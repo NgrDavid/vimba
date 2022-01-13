@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bonsai.Vimba
 {
@@ -16,11 +12,10 @@ namespace Bonsai.Vimba
 
         public override StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
         {
-            using var vimba = new AVT.VmbAPINET.Vimba();
-            vimba.Startup();
+            VimbaApi.Handle.Startup();
             try
             {
-                var cameraList = vimba.Cameras;
+                var cameraList = VimbaApi.Handle.Cameras;
                 var values = new List<string>(cameraList.Count);
                 for (int i = 0; i < cameraList.Count; i++)
                 {
@@ -34,7 +29,7 @@ namespace Bonsai.Vimba
 
                 return new StandardValuesCollection(values);
             }
-            finally { vimba.Shutdown(); }
+            finally { VimbaApi.Handle.Shutdown(); }
         }
     }
 }

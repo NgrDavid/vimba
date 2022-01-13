@@ -77,39 +77,41 @@ namespace Bonsai.Vimba
                 var frameCount = FrameCount.GetValueOrDefault(3);
                 return Task.Factory.StartNew(async () =>
                 {
-                    Camera camera = default;
-                    AVT.VmbAPINET.Vimba vimba = default;
+                    Camera camera;
                     try
                     {
-                        vimba = new AVT.VmbAPINET.Vimba();
-                        vimba.Startup();
-
-                        var cameraList = vimba.Cameras;
-                        if (!string.IsNullOrEmpty(serialNumber))
+                        lock (systemLock)
                         {
-                            for (int i = 0; i < cameraList.Count; i++)
+                            VimbaApi.Handle.Startup();
+
+                            var cameraList = VimbaApi.Handle.Cameras;
+                            if (!string.IsNullOrEmpty(serialNumber))
                             {
-                                if (cameraList[i].SerialNumber == serialNumber)
+                                camera = null;
+                                for (int i = 0; i < cameraList.Count; i++)
                                 {
-                                    camera = cameraList[i];
+                                    if (cameraList[i].SerialNumber == serialNumber)
+                                    {
+                                        camera = cameraList[i];
+                                    }
+                                }
+
+                                if (camera == null)
+                                {
+                                    var message = string.Format("No Vimba camera was found with serial number {0}.", serialNumber);
+                                    throw new InvalidOperationException(message);
                                 }
                             }
-
-                            if (camera == null)
+                            else
                             {
-                                var message = string.Format("No Vimba camera was found with serial number {0}.", serialNumber);
-                                throw new InvalidOperationException(message);
-                            }
-                        }
-                        else
-                        {
-                            if (index < 0 || index >= cameraList.Count)
-                            {
-                                var message = string.Format("No Vimba camera was found at index {0}.", index);
-                                throw new InvalidOperationException(message);
-                            }
+                                if (index < 0 || index >= cameraList.Count)
+                                {
+                                    var message = string.Format("No Vimba camera was found at index {0}.", index);
+                                    throw new InvalidOperationException(message);
+                                }
 
-                            camera = cameraList[index];
+                                camera = cameraList[index];
+                            }
                         }
 
                         var imageFormat = default(VmbPixelFormatType);
@@ -164,10 +166,9 @@ namespace Bonsai.Vimba
                     catch (Exception ex) { observer.OnError(ex); throw; }
                     finally
                     {
-                        if (vimba != null)
+                        lock (systemLock)
                         {
-                            vimba.Shutdown();
-                            vimba.Dispose();
+                            VimbaApi.Handle.Shutdown();
                         }
                     }
                 });
