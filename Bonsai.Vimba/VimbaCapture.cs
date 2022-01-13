@@ -24,6 +24,11 @@ namespace Bonsai.Vimba
         [Description("Specifies the optional number of frames to allocate for continuous acquisition.")]
         public int? FrameCount { get; set; }
 
+        [FileNameFilter("XML Files (*.xml)|*.xml|All Files (*.*)|*.*")]
+        [Editor("Bonsai.Design.OpenFileNameEditor, Bonsai.Design", "System.Drawing.Design.UITypeEditor, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+        [Description("The name of the file containing the camera settings.")]
+        public string SettingsFile { get; set; }
+
         static unsafe Func<Frame, IplImage> GetConverter(VmbPixelFormatType pixelFormat)
         {
             int outputChannels;
@@ -72,6 +77,7 @@ namespace Bonsai.Vimba
         {
             return Observable.Create<VimbaDataFrame>((observer, cancellationToken) =>
             {
+                var settingsFile = SettingsFile;
                 var serialNumber = SerialNumber;
                 var index = Index.GetValueOrDefault(0);
                 var frameCount = FrameCount.GetValueOrDefault(3);
@@ -112,6 +118,11 @@ namespace Bonsai.Vimba
 
                                 camera = cameraList[index];
                             }
+                        }
+
+                        if (!string.IsNullOrEmpty(settingsFile))
+                        {
+                            camera.LoadCameraSettings(settingsFile);
                         }
 
                         var imageFormat = default(VmbPixelFormatType);
