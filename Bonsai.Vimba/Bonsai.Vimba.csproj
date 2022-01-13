@@ -6,9 +6,9 @@
     <Description>Bonsai Library containing modules for acquiring images from Allied Vision cameras. Vimba SDK version 5.1.0 is required.</Description>
     <Copyright>Copyright © Gonçalo Lopes 2022</Copyright>
     <ProjectUrl>https://github.com/bonsai-rx/vimba</ProjectUrl>
-    <PackageLicenseUrl>https://github.com/bonsai-rx/vimba/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://github.com/bonsai-rx/vimba/blob/main/LICENSE</PackageLicenseUrl>
     <PackageIconUrl>https://bonsai-rx.org/assets/images/bonsai.png</PackageIconUrl>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageTags>Bonsai Rx Allied Vision Vimba</PackageTags>
     <IncludeSymbols Condition="'$(Configuration)'=='Release'">true</IncludeSymbols>
     <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
