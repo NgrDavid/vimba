@@ -143,7 +143,14 @@ namespace Bonsai.Vimba
                                 }
                                 finally
                                 {
-                                    camera.QueueFrame(frame);
+                                    try { camera.QueueFrame(frame); }
+                                    catch (VimbaException)
+                                    {
+                                        if (camera.PermittedAccess != VmbAccessModeType.VmbAccessModeNone)
+                                        {
+                                            throw;
+                                        }
+                                    }
                                 }
                             };
 
