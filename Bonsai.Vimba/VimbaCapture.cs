@@ -31,23 +31,30 @@ namespace Bonsai.Vimba
 
         static unsafe Func<Frame, IplImage> GetConverter(VmbPixelFormatType pixelFormat)
         {
+            int inputChannels;
             int outputChannels;
             IplDepth outputDepth;
             ColorConversion? colorConversion = default;
             switch (pixelFormat)
             {
                 case VmbPixelFormatType.VmbPixelFormatMono8:
-                    outputChannels = 1;
+                    outputChannels = inputChannels = 1;
                     outputDepth = IplDepth.U8;
                     break;
                 case VmbPixelFormatType.VmbPixelFormatBgr8:
                 case VmbPixelFormatType.VmbPixelFormatRgb8:
-                    outputChannels = 3;
+                    outputChannels = inputChannels = 3;
                     outputDepth = IplDepth.U8;
                     if (pixelFormat == VmbPixelFormatType.VmbPixelFormatRgb8)
                     {
                         colorConversion = ColorConversion.Rgb2Bgr;
                     }
+                    break;
+                case VmbPixelFormatType.VmbPixelFormatBayerRG8:
+                    inputChannels = 1;
+                    outputChannels = 3;
+                    outputDepth = IplDepth.U8;
+                    colorConversion = ColorConversion.BayerBG2Bgr;
                     break;
                 default:
                     throw new InvalidOperationException(string.Format("Unable to convert pixel format {0}.", pixelFormat));
@@ -59,7 +66,7 @@ namespace Bonsai.Vimba
                 var imageFormat = frame.PixelFormat;
                 fixed (byte* buffer = frame.Buffer)
                 {
-                    var bufferHeader = new IplImage(imageSize, outputDepth, outputChannels, (IntPtr)buffer);
+                    var bufferHeader = new IplImage(imageSize, outputDepth, inputChannels, (IntPtr)buffer);
                     var output = new IplImage(imageSize, outputDepth, outputChannels);
                     if (colorConversion.HasValue) CV.CvtColor(bufferHeader, output, colorConversion.Value);
                     else CV.Copy(bufferHeader, output);
