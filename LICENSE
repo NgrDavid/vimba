@@ -1,6 +1,4 @@
-MIT License
-
-Copyright (c) 2022 Gonçalo Lopes
+Copyright (c) 2023 NeuroGEARS Ltd
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +17,20 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+----------------------
+[VimbaNET.dll] (hereinafter referred to as the "Software")
+
+Made available under license from Allied Vision Technologies GmbH
+
+1. All rights in the copyright and any other industrial property rights in
+   and to the Software are reserved.
+2. You are permitted non-exclusive, world-wide and indefinite right to use the
+   Software for the limited purposes it is made available to you in order for
+   you to make use of the integration functionality between Bonsai and Allied
+   Vision cameras. You may only make use of the Software in connection with
+   Allied Vision cameras and in accordance with Art. 4 par. 3 subsections a),
+   and c) through e) in conjunction with Art. 4 par. 4 of the
+   [Vimba Terms and Conditions of use][1].
+   
+[1]: <https://cdn.alliedvision.com/fileadmin/content/documents/Terms_Conditions/Terms_and_Conditions_Vimba_Downloads-EN_1.0.1.pdf>

@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Authors>Gonçalo Lopes</Authors>
+    <Authors>NeuroGEARS</Authors>
     <Title>Bonsai - Vimba Library</Title>
     <Description>Bonsai Library containing modules for acquiring images from Allied Vision cameras. Vimba SDK version 5.1.0 is required.</Description>
-    <Copyright>Copyright © Gonçalo Lopes 2022</Copyright>
+    <Copyright>Copyright © NeuroGEARS Ltd 2023</Copyright>
     <ProjectUrl>https://github.com/bonsai-rx/vimba</ProjectUrl>
     <PackageLicenseUrl>https://github.com/bonsai-rx/vimba/blob/main/LICENSE</PackageLicenseUrl>
     <PackageIconUrl>https://bonsai-rx.org/assets/images/bonsai.png</PackageIconUrl>
