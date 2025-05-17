@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <PackageTags>Bonsai Rx Allied Vision Vimba</PackageTags>
+    <PackageProjectUrl>https://bonsai-rx.org/vimba</PackageProjectUrl>
+
+    <Authors>Bonsai Foundation</Authors>
+    <Copyright>Copyright © Bonsai Foundation CIC and Contributors</Copyright>
+  </PropertyGroup>
+</Project>

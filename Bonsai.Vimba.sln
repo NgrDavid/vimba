@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.Vimba", "Bonsai.Vimba\Bonsai.Vimba.csproj", "{CF3AC6E3-5B8E-43C3-AC1D-2AB5F1461145}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.Vimba", "src\Bonsai.Vimba\Bonsai.Vimba.csproj", "{CF3AC6E3-5B8E-43C3-AC1D-2AB5F1461145}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{DEE5DD87-39C1-BF34-B639-A387DCCF972B}"
+	ProjectSection(SolutionItems) = preProject
+		build\Common.csproj.props = build\Common.csproj.props
+		build\Common.csproj.targets = build\Common.csproj.targets
+		build\Common.Tests.csproj.props = build\Common.Tests.csproj.props
+		build\icon.png = build\icon.png
+		build\Package.props = build\Package.props
+		build\Project.csproj.props = build\Project.csproj.props
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
